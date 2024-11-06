@@ -20,6 +20,7 @@ public:
     };
 
     PxServ(String apiKey);
+    Callback setData(String key, String value);
 
 private:
     String _apiKey;
