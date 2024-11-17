@@ -23,12 +23,11 @@ PxServ::Callback PxServ::setData(String key, String value)
         if (https.begin(*client, "https://api.pxserv.net/database/setData"))
         {
             https.addHeader("Content-Type", "application/json");
+            https.addHeader("apikey", _apiKey);
 
-            int httpCode = https.POST("{\"key\":\"" + key +
-                                      "\",\"value\":\"" + value + "\",\"apiKey\":\"" + _apiKey + "\"}");
+            int httpCode = https.POST("{\"key\":\"" + key + "\",\"value\":\"" + value + "\"}");
             if (httpCode > 0)
             {
-
                 String payload = https.getString();
                 JSONVar result = JSON.parse(payload);
 
@@ -54,6 +53,7 @@ PxServ::Callback PxServ::setData(String key, String value)
     delete client;
     return callback;
 }
+
 PxServ::Callback PxServ::getData(String key)
 {
     WiFiClientSecure *client = new WiFiClientSecure;
@@ -72,16 +72,14 @@ PxServ::Callback PxServ::getData(String key)
         if (https.begin(*client, "https://api.pxserv.net/database/getData"))
         {
             https.addHeader("Content-Type", "application/json");
+            https.addHeader("apikey", _apiKey);
 
             JSONVar body;
-
             body["key"] = key;
-            body["apiKey"] = PxServ::_apiKey;
 
             int httpCode = https.POST(JSON.stringify(body));
             if (httpCode > 0)
             {
-
                 String payload = https.getString();
                 JSONVar result = JSON.parse(payload);
 
@@ -113,6 +111,7 @@ PxServ::Callback PxServ::getData(String key)
     delete client;
     return callback;
 }
+
 PxServ::Callback PxServ::removeData(String key)
 {
     WiFiClientSecure *client = new WiFiClientSecure;
@@ -131,16 +130,14 @@ PxServ::Callback PxServ::removeData(String key)
         if (https.begin(*client, "https://api.pxserv.net/database/removeData"))
         {
             https.addHeader("Content-Type", "application/json");
+            https.addHeader("apikey", _apiKey);
 
             JSONVar body;
-
             body["key"] = key;
-            body["apiKey"] = PxServ::_apiKey;
 
             int httpCode = https.POST(JSON.stringify(body));
             if (httpCode > 0)
             {
-
                 String payload = https.getString();
                 JSONVar result = JSON.parse(payload);
 
