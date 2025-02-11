@@ -5,6 +5,19 @@ PxServ::PxServ(String apiKey)
     _apiKey = apiKey;
 }
 
+void PxServ::connectWifi(String ssid, String password)
+{
+    WiFi.begin(ssid, password);
+
+    while (WiFi.status() != WL_CONNECTED)
+    {
+        delay(500);
+        Serial.println("[PxServ] Connecting to WiFi...");
+    }
+
+    Serial.println("[PxServ] Connected to WiFi");
+}
+
 PxServ::Callback PxServ::setData(String key, String value)
 {
     WiFiClientSecure *client = new WiFiClientSecure;
