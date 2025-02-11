@@ -13,3 +13,9 @@ PxServ	KEYWORD1
 setData	    KEYWORD2
 getData	    KEYWORD2
 removeData	KEYWORD2
+connectWifi	KEYWORD2
+
+#########################################################
+# Structures (KEYWORD3)
+#########################################################
+Callback	KEYWORD3

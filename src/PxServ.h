@@ -26,6 +26,7 @@ public:
     };
 
     PxServ(String apiKey);
+    static void connectWifi(String ssid, String password);
     Callback setData(String key, String value);
     Callback getData(String key);
     Callback removeData(String key);
