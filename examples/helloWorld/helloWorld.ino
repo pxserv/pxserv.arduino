@@ -12,8 +12,8 @@ void setup()
 
 void loop()
 {
-    // Add data
-    PxServ::Callback setResult = client.setData("msg", "value"); // Add "value" to the "msg" key
+    // Save data
+    PxServ::Callback setResult = client.setData("exampleData1", "value"); // Add "value" to the "exampleData1" key
     Serial.print("Set Result -> Status: ");
     Serial.print(setResult.status);
     Serial.print(" | Message: ");
@@ -23,8 +23,19 @@ void loop()
 
     delay(2000); // Wait for two seconds
 
+    // Toggle data
+    PxServ::Callback toggleResult = client.toggleData("exampleData2"); // Toggles the value of the “exampleData2” key between 0 and 1
+    Serial.print("Toggle Result -> Status: ");
+    Serial.print(toggleResult.status);
+    Serial.print(" | Message: ");
+    Serial.print(toggleResult.message);
+    Serial.print(" | Data: ");
+    Serial.println(toggleResult.data);
+
+    delay(2000); // Wait for two seconds
+
     // Get data
-    PxServ::Callback getResult = client.getData("msg"); // Get the value for the "msg" key
+    PxServ::Callback getResult = client.getData("exampleData1"); // Get the value for the "exampleData1" key
     Serial.print("Get Result -> Status: ");
     Serial.print(getResult.status);
     Serial.print(" | Message: ");
@@ -35,7 +46,7 @@ void loop()
     delay(2000); // Wait for two seconds
 
     // Remove data
-    PxServ::Callback removeResult = client.removeData("msg"); // Remove the "msg" key
+    PxServ::Callback removeResult = client.removeData("exampleData1"); // Remove the "exampleData" key
     Serial.print("Remove Result -> Status: ");
     Serial.print(removeResult.status);
     Serial.print(" | Message: ");
