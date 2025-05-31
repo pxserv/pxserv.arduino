@@ -11,6 +11,7 @@ PxServ	KEYWORD1
 # Methods and Functions (KEYWORD2)
 #########################################################
 setData	    KEYWORD2
+toggleData  KEYWORD2
 getData	    KEYWORD2
 removeData	KEYWORD2
 connectWifi	KEYWORD2
