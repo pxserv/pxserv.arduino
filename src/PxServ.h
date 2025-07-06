@@ -13,6 +13,8 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 #include <WiFiClientSecureBearSSL.h>
+#else
+#error "PxServ Arduino Library only supports ESP32 and ESP8266 boards.\nPxServ Arduino Kütüphanesi sadece ESP32 ve ESP8266 kartlarında çalışır."
 #endif
 
 class PxServ
