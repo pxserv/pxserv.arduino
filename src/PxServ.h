@@ -1,7 +1,7 @@
 #ifndef PxServ_h
 #define PxServ_h
 
-#include <Arduino_JSON.h>
+#include <ArduinoJson.h>
 #include <Arduino.h>
 
 #if defined(ESP32)
@@ -9,10 +9,12 @@
 #include <WiFiMulti.h>
 #include <HTTPClient.h>
 #include <WiFiClientSecure.h>
+#include <HTTPUpdate.h>
 #elif defined(ESP8266)
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 #include <WiFiClientSecureBearSSL.h>
+#include <ESP8266httpUpdate.h>
 #else
 #error "PxServ Arduino Library only supports ESP32 and ESP8266 boards.\nPxServ Arduino Kütüphanesi sadece ESP32 ve ESP8266 kartlarında çalışır."
 #endif
@@ -29,6 +31,9 @@ public:
 
     PxServ(String apiKey);
     static void connectWifi(String ssid, String password);
+    void setDeviceFirmwareVersion(String version);
+    String getDeviceFirmwareVersion();
+    void checkOtaFirmware();
     Callback setData(String key, String value);
     Callback toggleData(String key);
     Callback getData(String key);
@@ -36,6 +41,8 @@ public:
 
 private:
     String _apiKey;
+    String _otaFirmwareVersion;
+    unsigned long _lastOtaCheck = 0;
 };
 
 #endif
