@@ -44,6 +44,7 @@ void PxServ::checkOtaFirmware()
         client->setInsecure();
 
         HTTPClient https;
+        https.setTimeout(5000);
 
         if (https.begin(*client, "https://api.pxserv.net/ota/check"))
         {
@@ -137,6 +138,7 @@ PxServ::Callback PxServ::setData(String key, String value)
         client->setInsecure();
 
         HTTPClient https;
+        https.setTimeout(5000);
 
         if (https.begin(*client, "https://api.pxserv.net/database/setData"))
         {
@@ -166,9 +168,8 @@ PxServ::Callback PxServ::setData(String key, String value)
                     callback.status = result["status"].as<int>();
                     callback.message = result["message"].as<String>();
                 }
-
-                https.end();
             }
+            https.end();
         }
     }
 
@@ -190,6 +191,7 @@ PxServ::Callback PxServ::toggleData(String key)
         client->setInsecure();
 
         HTTPClient https;
+        https.setTimeout(5000);
 
         if (https.begin(*client, "https://api.pxserv.net/database/toggleData"))
         {
@@ -218,9 +220,8 @@ PxServ::Callback PxServ::toggleData(String key)
                     callback.status = result["status"].as<int>();
                     callback.message = result["message"].as<String>();
                 }
-
-                https.end();
             }
+            https.end();
         }
     }
 
@@ -242,6 +243,7 @@ PxServ::Callback PxServ::getData(String key)
         client->setInsecure();
 
         HTTPClient https;
+        https.setTimeout(5000);
 
         if (https.begin(*client, "https://api.pxserv.net/database/getData"))
         {
@@ -278,9 +280,8 @@ PxServ::Callback PxServ::getData(String key)
                     callback.status = status;
                     callback.message = message;
                 }
-
-                https.end();
             }
+            https.end();
         }
     }
 
@@ -302,6 +303,7 @@ PxServ::Callback PxServ::removeData(String key)
         client->setInsecure();
 
         HTTPClient https;
+        https.setTimeout(5000);
 
         if (https.begin(*client, "https://api.pxserv.net/database/removeData"))
         {
@@ -330,9 +332,8 @@ PxServ::Callback PxServ::removeData(String key)
                     callback.status = result["status"].as<int>();
                     callback.message = result["message"].as<String>();
                 }
-
-                https.end();
             }
+            https.end();
         }
     }
 
